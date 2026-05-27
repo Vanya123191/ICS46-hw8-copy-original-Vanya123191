@@ -1,9 +1,10 @@
 #include "graph.h"
+#include <stdexcept>
 
 // Basic error logging helper
 void error(string msg) {
     cerr << "Error: " << msg << endl;
-    exit(EXIT_FAILURE);
+    throw runtime_error(msg);
 }
 
 // DisjointSet Implementation
@@ -123,9 +124,7 @@ VertexList dfs(const Graph& graph, Vertex startVertex) {
         S.pop();
         result.push_back(v);
 
-        VertexList neighbors = graph.edges_from(v);
-        for (auto it = neighbors.rbegin(); it != neighbors.rend(); ++it) {
-            Vertex w = *it;
+        for (Vertex w : graph.edges_from(v)){
             if (!visited[w]) {
                 visited[w] = true;
                 S.push(w);
