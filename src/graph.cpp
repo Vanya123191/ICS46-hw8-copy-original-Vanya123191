@@ -1,10 +1,8 @@
 #include "graph.h"
-#include <stdexcept>
 
 // Basic error logging helper
 void error(string msg) {
     cerr << "Error: " << msg << endl;
-    throw runtime_error(msg);
 }
 
 // DisjointSet Implementation
